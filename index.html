@@ -2001,9 +2001,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         line-height: 1.25;
         font-weight: 800;
         color: #fff;
-		background-color: whitesmoke;
-        padding: 5px 4px;
-        border-radius: 10px;
     }
 
     .ydWhy-sub {
@@ -2169,7 +2166,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             transform: translateY(100%);
         }
         .ydWhy-modal.is-open .ydWhy-panel { transform: translateY(0); }
-        .ydWhy-title { font-size: 19px; }
+        .ydWhy-title { font-size: 19px; color:white;}
         .ydWhy-btn { font-size: 13px; padding: 8px 14px 8px 12px; }
     }
 
@@ -2181,22 +2178,221 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Button -->
 <button type="button" class="ydWhy-btn" id="ydWhyOpen" aria-haspopup="dialog" aria-controls="ydWhyModal">
     <span class="ydWhy-btn__icon" aria-hidden="true">&#9733;</span>
-    Why to book this?
+    Why Book This?
     <span class="ydWhy-btn__new">Must Read</span>
 </button>
 
 <!-- Popup -->
 <div class="ydWhy-modal" id="ydWhyModal" aria-hidden="true">
     <div class="ydWhy-backdrop" id="ydWhyBackdrop"></div>
-    <div class="ydWhy-panel" role="dialog" aria-modal="true" aria-labelledby="ydWhyTitle">
+    <div class="ydWhy-panel" role="dialog" aria-modal="true"  aria-labelledby="ydWhyTitle">
         <div class="ydWhy-header">
             <button type="button" class="ydWhy-close" id="ydWhyClose" aria-label="Close">&times;</button>
             <span class="ydWhy-eyebrow">Top Reasons</span>
-            <h3 class="ydWhy-title" id="ydWhyTitle">Why to book this?</h3>
+            <h2 class="ydWhy-title" style="color: #FFFFFF;" id="ydWhyTitle">
+    Why to book this?
+</h2>
             <p class="ydWhy-sub">Everything that makes this property a great choice</p>
         </div>
         <div class="ydWhy-body" id="ydWhyBody"></div>
     </div>
+</div>
+<style>
+    /* ===== Buttons row ===== */
+    .ydBtnRow {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px;
+        margin-top: 15px;
+    }
+    .ydBtnRow .ydWhy-btn { margin-top: 0; }
+
+    /* ===== Past customer video card ===== */
+    .ydGuestVid {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 10px 8px 8px;
+        border-radius: 18px;
+        text-decoration: none !important;
+        color: #fff !important;
+        overflow: hidden;
+        background: linear-gradient(135deg, #2a0a1c 0%, #632240 60%, #9a3050 100%);
+        border: 2px solid #ffd27a;
+        box-shadow: 0 8px 22px rgba(99, 34, 64, .45);
+        animation: ydGvGlow 2.4s ease-in-out infinite;
+        transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .ydGuestVid:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 14px 30px rgba(99, 34, 64, .6);
+        color: #fff !important;
+    }
+    .ydGuestVid:active { transform: scale(.97); }
+
+    /* shine sweep */
+    .ydGuestVid::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -80%;
+        width: 45%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255, 255, 255, .35), transparent);
+        transform: skewX(-20deg);
+        animation: ydGvShine 3.4s ease-in-out infinite;
+        pointer-events: none;
+    }
+
+    /* thumbnail */
+    .ydGv-thumb {
+        position: relative;
+        flex: 0 0 auto;
+        width: 96px;
+        height: 60px;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #1b0710 url("https://img.youtube.com/vi/r6FfscDgMLQ/hqdefault.jpg") center / cover no-repeat;
+    }
+    .ydGv-thumb::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, .3);
+    }
+    .ydGv-play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 2;
+        width: 36px;
+        height: 36px;
+        margin: -18px 0 0 -18px;
+        border-radius: 50%;
+        background: #ff1f1f;
+        animation: ydGvPulse 1.8s ease-out infinite;
+    }
+    .ydGv-play::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -8px 0 0 -4px;
+        border-style: solid;
+        border-width: 8px 0 8px 13px;
+        border-color: transparent transparent transparent #fff;
+    }
+
+    /* text */
+    .ydGv-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.25;
+        text-align: left;
+    }
+    .ydGv-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: #ffd27a;
+    }
+    .ydGv-tag::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #ff3b3b;
+        animation: ydGvBlink 1s steps(2, start) infinite;
+    }
+    .ydGv-title {
+        font-size: 15px;
+        font-weight: 800;
+        color: #fff;
+    }
+    .ydGv-sub {
+        font-size: 12px;
+        font-weight: 600;
+        color: #ffe9c7;
+    }
+
+    /* WATCH NOW pill */
+    .ydGv-cta {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-left: 4px;
+        padding: 9px 14px;
+        border-radius: 50px;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: .6px;
+        text-transform: uppercase;
+        color: #4a1230;
+        background: linear-gradient(135deg, #ffd27a, #ffb347);
+        box-shadow: 0 4px 12px rgba(255, 179, 71, .5);
+    }
+    .ydGv-cta i {
+        font-style: normal;
+        display: inline-block;
+        animation: ydGvArrow 1.2s ease-in-out infinite;
+    }
+
+    @keyframes ydGvPulse {
+        0%   { box-shadow: 0 0 0 0 rgba(255, 31, 31, .7); }
+        70%  { box-shadow: 0 0 0 14px rgba(255, 31, 31, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 31, 31, 0); }
+    }
+    @keyframes ydGvGlow {
+        0%, 100% { box-shadow: 0 8px 22px rgba(99, 34, 64, .45); }
+        50%      { box-shadow: 0 8px 28px rgba(255, 210, 122, .6); }
+    }
+    @keyframes ydGvShine {
+        0%, 55% { left: -80%; }
+        100%    { left: 150%; }
+    }
+    @keyframes ydGvBlink { to { visibility: hidden; } }
+    @keyframes ydGvArrow {
+        0%, 100% { transform: translateX(0); }
+        50%      { transform: translateX(4px); }
+    }
+
+    /* mobile */
+    @media (max-width: 575px) {
+        .ydBtnRow { gap: 12px; }
+        .ydGuestVid { width: 100%; }
+        .ydGv-thumb { width: 84px; height: 54px; }
+        .ydGv-title { font-size: 14px; }
+        .ydGv-cta { padding: 8px 11px; font-size: 11px; margin-left: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .ydGuestVid, .ydGuestVid::after, .ydGv-play,
+        .ydGv-tag::before, .ydGv-cta i { animation: none; }
+    }
+</style>
+
+<div class="ydBtnRow">
+
+    <!-- 2) Past customer video (opens YouTube in new tab) -->
+    <a class="ydGuestVid"
+       href="https://youtu.be/r6FfscDgMLQ?si=v-yXnB4bftkS-uuU"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Watch past customers' stay experience video on YouTube">
+        <span class="ydGv-thumb"><span class="ydGv-play"></span></span>
+        <span class="ydGv-text">
+            <span class="ydGv-tag">Real Guest Video</span>
+            <span class="ydGv-title">See Past Customers' Stay Experience</span>
+            <span class="ydGv-sub">Watch before you book</span>
+        </span>
+        <span class="ydGv-cta">Watch Now <i>&#10140;</i></span>
+    </a>
+
 </div>
 <script>
     (function() {
